@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$title}</title>
+</head>
+<body>
+<div style="color:red">
+	{foreach from=$form.errors item=error key=field_name}
+		{$error}<br>
+	{/foreach}
+</div>
+<h1>{$h1}</h1>
+<form {$form.attributes} class="def">
+	{$form.hidden}
+	{$form.action.html}
+	<dl>
+		<dt>{if $form.name_c.required}<font color="red">*</font> {/if}{$form.name_c.label}</dt><dd>{$form.name_c.html}</dd>
+		<dt>{if $form.readname_c.required}<font color="red">*</font> {/if}{$form.readname_c.label}</dt><dd>{$form.readname_c.html}</dd>
+		<dt>{if $form.tel_c.required} {/if}{$form.tel_c.label}</dt><dd>{$form.tel_c.html}</dd>
+		<dt>{if $form.tel_sub_c.required} {/if}{$form.tel_sub_c.label}</dt><dd>{$form.tel_sub_c.html}</dd>
+		<dt>{if $form.mail_c.required} {/if}{$form.mail_c.label}</dt><dd>{$form.mail_c.html}</dd>
+		<dt>{if $form.mail_sub_c.required} {/if}{$form.mail_sub_c.label}</dt><dd>{$form.mail_sub_c.html}</dd>
+		<dt>{if $form.postcode_c.required} {/if}{$form.postcode_c.label}</dt><dd>{$form.postcode_c.html}</dd>
+		<dt>{if $form.add_c.required} {/if}{$form.add_c.label}</dt><dd>{$form.add_c.html}</dd>
+		<dt>{if $form.building_c.required} {/if}{$form.building_c.label}</dt><dd>{$form.building_c.html}</dd>
+		<dt>{if $form.tw_c.required} {/if}{$form.tw_c.label}</dt><dd>{$form.tw_c.html}</dd>
+		<dt>{if $form.fb_c.required} {/if}{$form.fb_c.label}</dt><dd>{$form.fb_c.html}</dd>
+		<dt></dt>
+		<dd>{if $insertflag != TRUE}{$form.buttons.send.html}{/if}{$form.buttons.reset.html}
+			{if $id != NULL}
+				<input type="button" onclick="location.href='index.php?module=adddetail&id={$id}'" value="戻る" />
+			{else}
+				<input type="button" onclick="location.href='index.php'" value="戻る" />
+			{/if}
+		</dd>
+	</dl>
+</form>
+{if $form.requirednote and not $form.frozen}
+	{$form.requirednote}
+{/if}
+</body>
+</html>

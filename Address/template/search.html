@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>アドレス帳 ～アドレス検索画面～</title>
+</head>
+<body>
+<h1>アドレス検索</h1>
+<form {$form.attributes} class="def">
+	{$form.hidden}
+	<table border="0px">
+		<tr>
+			<td>{$form.search.label}</td>
+			<td>{$form.search.html}</td>
+			<td>{$form.buttons.send.html}</td>
+			<td><input type="button" onclick="location.href='index.php'" value="戻る" /></td>
+		</tr>
+	</table>
+</form>
+<table border="1px">
+	{foreach from=$data item="value"}
+		<form name="addlist_f1" method="POST" action="index.php">
+			<tr>
+				<td width="150px">{$value.name_c}</td>
+				<td>
+					<input type="hidden" value="{$value.id}" name="id" >
+					<input type="submit" value="詳細" name="detail" >
+				</td>
+			</tr>
+		</form>
+	{/foreach}
+</table>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>アドレス帳 ～アドレス詳細画面～</title>
+<script Language="JavaScript">
+<!--
+// 削除ボタン押下
+function deleterecode(id){
+	if(confirm("削除してもよろしいですか?")!=false){
+		document.adddetail_f1.judge.value="1";
+		document.adddetail_f1.action="index.php?module=adddetail&id="+id;
+		document.adddetail_f1.submit();
+	} else {
+		document.adddetail_f1.judge.value="0";
+		document.adddetail_f1.action="index.php?module=adddetail&id="+id;
+		document.adddetail_f1.submit();
+	}
+}
+-->
+</script>
+</head>
+<body>
+<h1>アドレス詳細（{$add_res.name_c}）</h1>
+<table border="0px">
+	<tr>
+		<td>
+			<form name="adddetail_f1" method="post" action="index.php?module=adddetail" >
+				<input type="hidden" name="judge" >
+				<input type="hidden" value="{$add_id}" name="id" >
+				<input type="submit" value="アドレス削除" name="del" onClick="deleterecode('{$add_id}')" >
+			</form>
+		</td>
+		<td>
+			<form name="adddetail_f2" method="post" action="index.php?module=adddetail&id={$add_id}" >
+				<input type="hidden" value="{$add_id}" name="id" >
+				<input type="submit" value="アドレス編集" name="edit" >
+			</form>
+		</td>
+		<td>
+			<form name="adddetail_f3" method="post" action="index.php">
+				<input type="submit" value="戻る">
+			</form>
+		</td>
+	</tr>
+</table>
+<div>
+	<div style="float:left;">
+		<h2>アドレス</h2>
+		<ul>
+			<li><strong>名前</strong><br>
+			{$add_res.name_c}（{$add_res.readname_c}）</li>
+			<li><strong>電話番号</strong><br>
+			{$add_res.tel_c}</li>
+			<li><strong>電話番号（サブ）</strong><br>
+			{$add_res.tel_sub_c}</li>
+			<li><strong>メール</strong><br>
+			{$add_res.mail_c}</li>
+			<li><strong>メール（サブ）</strong><br>
+			{$add_res.mail_sub_c}</li>
+			<li><strong>郵便番号</strong><br>
+			{$add_res.postcode_c}</li>
+			<li><strong>住所</strong><br>
+			{$add_res.add_c}&nbsp{$add_res.building_c}</li>
+		</ul>
+		<!--Googleマップ情報の表示-->
+		{if $g_flag == TRUE}
+			<h2>Goggleマップ</h2>
+			{$gmap_res->printOnLoad()}
+			<div style="margin-right:10px;">{$gmap_res->printMap()}</div>
+		{else if $fb_flag == FALSE}
+		{else}
+		{/if}
+		</div>
+		<div style="float:left;">
+		<!--Facebook情報の表示-->
+		{if $fb_flag == TRUE}
+			<h2>Facebook</h2>
+			<a href="{$fb_res.link}" target=_blank><img src = "{$fb_res.img}" border="1"></a>
+			<a href="{$fb_res.link}" target=_blank><strong>{$fb_res.id}</strong></a>
+			<ul>
+				<li><strong>名前</strong><br>
+				{$fb_res.name}</li>
+			</ul>
+		{else if $fb_flag == FALSE}
+		{else}
+		{/if}
+	</div>
+</div>
+</body>
+</html>

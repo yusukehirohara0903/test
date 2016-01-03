@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>アドレス帳 ～ユーザ設定画面～</title></title>
+</head>
+<body>
+{if $userflag == TRUE}
+	<div style="color:red">
+	{foreach from=$form.errors item=error key=field_name}
+			{$error}<br>
+	{/foreach}
+	</div>
+	<h1>ユーザ設定</h1>
+	<form {$form.attributes} class="def">
+		{$form.hidden}
+		<dl>
+			<dt>{if $form.name.required}<font color="red">*</font> {/if}{$form.name.label}</dt><dd>{$form.name.html}</dd>
+			<dt>{if $form.pass_sim.required}<font color="red">*</font> {/if}{$form.pass_sim.label}</dt><dd>{$form.pass_sim.html}</dd>
+			<dt>{if $form.pass.required}<font color="red">*</font> {/if}{$form.pass.label}</dt><dd>{$form.pass.html}</dd>
+			<dt>{if $form.pass_conf.required}<font color="red">*</font> {/if}{$form.pass_conf.label}</dt><dd>{$form.pass_conf.html}</dd>
+			<dd>
+				{$form.buttons.send.html}{$form.buttons.reset.html}
+				<input type="button" onclick="location.href='index.php'" value="戻る" />
+			</dd>
+		</dl>
+	</form>
+{if $form.requirednote and not $form.frozen}
+	{$form.requirednote}
+{/if}
+{else if $userflag == FALSE}
+	<form name="addlist_f1" method="post" action="index.php">
+	<input type="submit" value="ログイン画面へ" name="logout">
+	</form>
+{else}
+{/if}
+</body>
+</html>

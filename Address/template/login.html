@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>アドレス帳 ～ログイン画面～</title>
+</head>
+<body>
+<!-- エラー時の表示 -->
+<div style="color:red">
+	{foreach from=$form.errors item=error key=field_name}
+		{$error}<br>
+	{/foreach}
+</div>
+<!-- フォーム表示 -->
+<form {$form.attributes} class="def">
+	{$form.hidden}
+	<dl>
+		<dt>{$form.uname.label}</dt><dd>{$form.uname.html}</dd>
+		<dt>{$form.upass.label}</dt><dd>{$form.upass.html}</dd>
+		<dd>{$form.send.html}</dd>
+	</dl>
+</form>
+</body>
+</html>
